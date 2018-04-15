@@ -67,6 +67,7 @@ export class FileComponent {
   // // isActive(snapshot){
   // //   return snapshot.state === 'running...' && snapshot.bytesTransferred < snapshot.totalBytes;
   // // }
+  
   fileUpload: FileUpload;
   selectedFiles: FileList
   currentFileUpload: FileUpload
