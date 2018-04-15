@@ -9,38 +9,21 @@ import { Query } from '@firebase/firestore-types';
 
 @Injectable()
 export class DisplayfileService {
-  
-  private basePath = '/uploads';
-  fileUploads: Observable<FileUpload[]>;
+   private basePath = '/uploads';
  
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase) { }
  
-  pushFileToStorage(fileUpload: FileUpload, progress: {percentage: number}) {
-    
+  pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
+    storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
  
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        // in progress
-        const snap = snapshot as firebase.storage.UploadTaskSnapshot
-        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100)
-      },
-      (error) => {
-        // fail
-        console.log(error)
-      },
-      () => {
-        // success
-        fileUpload.url = uploadTask.snapshot.downloadURL
-        fileUpload.name = fileUpload.file.name
-        this.saveFileData(fileUpload)
-      }
-    );
+    fileUpload.url = downloadURL;
+    fileUpload.name = fileName;
+    this.saveFileData(fileUpload);
   }
  
   private saveFileData(fileUpload: FileUpload) {
-    this.db.list(`${this.basePath}/`).push(fileUpload)
+    this.db.list(`${this.basePath}/`).push(fileUpload);
   }
  
   getFileUploads(numberItems): AngularFireList<FileUpload> {
@@ -49,19 +32,19 @@ export class DisplayfileService {
   }
  
   deleteFileUpload(fileUpload: FileUpload) {
-    this.deleteFileDatabase(fileUpload.$key)
+    this.deleteFileDatabase(fileUpload.key)
       .then(() => {
-        this.deleteFileStorage(fileUpload.name)
+        this.deleteFileStorage(fileUpload.name);
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
  
   private deleteFileDatabase(key: string) {
-    return this.db.list(`${this.basePath}/`).remove(key)
+    return this.db.list(`${this.basePath}/`).remove(key);
   }
  
   private deleteFileStorage(name: string) {
-    const storageRef = firebase.storage().ref()
+    const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePath}/${name}`).delete();
   }
 }
