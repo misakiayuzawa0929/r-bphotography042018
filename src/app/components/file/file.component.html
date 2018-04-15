@@ -68,10 +68,10 @@
         <div class="panel-heading">List of Files</div>
         <div *ngFor="let file of fileUploads | async">
           <div class="panel-body">
-              {{fileUpload.name}}
-              <button (click)='deleteFileUpload(fileUpload)'
+              {{file.name}}
+              <button (click)='deleteFileUpload(file)'
                 class="btn btn-danger btn-xs" style="float: right">Delete</button>
-              <!-- <img src="{{fileUpload.url}}" alt="{{fileUpload.name}}" style="max-width:350px"/> -->
+              <img src="{{file.url}}" alt="{{file.name}}" style="max-width:350px"/>
            </div>
         </div>
     </div>
