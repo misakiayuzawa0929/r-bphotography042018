@@ -68,19 +68,19 @@ export class FileComponent {
   // //   return snapshot.state === 'running...' && snapshot.bytesTransferred < snapshot.totalBytes;
   // // }
   
-  fileUpload: FileUpload;
+//   fileUpload: FileUpload;
   selectedFiles: FileList
   currentFileUpload: FileUpload
   progress: {percentage: number} = {percentage: 0}
-  // fileUploads: Observable<FileUpload[]>;
+  fileUploads: any[];
  
   constructor(private uploadService: DisplayfileService, public authService: AuthService, private router: Router) {}
  
   onInit(){
     this.uploadService.getFileUploads(6).snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    }).subscribe(numberItems => {
-      numberItems = numberItems;
+    }).subscribe(fileUploads => {
+      this.fileUploads = fileUploads;
     });
   }
  
