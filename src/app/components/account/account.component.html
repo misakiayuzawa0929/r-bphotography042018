@@ -1,0 +1,41 @@
+<nav>
+    <div class="nav-wrapper black">
+      <ul> 
+        <li class="li"><a><i class="fa fa-bars bar"></i></a>
+            <ul>
+              <li class="li1"><a (click)="homeClick()">Home</a></li>
+              <li class="li1"><a>Modify Account</a></li>
+              <li class="li1"><a (click)="productClick()">Modify Products</a></li>            
+              <li class="li1"><a (click)="packageClick()">Modify Packages</a></li>         
+              <li class="li1"><a (click)="imageClick()">Modify Images</a></li>
+              <li class="li1"><a (click)="ordersClick()">Manage Orders</a></li> 
+              <li class="li1"><a (click)="reportClick()">View Reports</a></li>                            
+              <li class="li1"><a (click)="logoutClick()">Logout</a></li>
+            </ul> 
+        </li>
+      </ul>
+    </div>
+</nav>
+<div class="body">
+    <div class="cnt">
+    
+      <div *ngIf="(authService.user | async)">
+        <h1>Manage Users</h1>
+        <input type="text" [(ngModel)]="email" placeholder="example@gmail.com">
+        <input type="password" [(ngModel)]="password" placeholder="password">
+        
+        <button onClick="return confirm('are you sure, do you want to add this user?')" (click)="signup()" [disabled]="!email || !password" class="btn blue">
+          Add
+        </button>
+    
+        <!-- <button (click)="login()" [disabled]="!email || !password" class="btn blue">
+          Login
+        </button> -->
+      </div>
+    </div>
+</div>
+<nav class="navig">
+  <div class="nav-wrapper black">
+      <p class="copy">Copyright <i class="fa fa-copyright"></i> 2018</p>
+  </div>
+</nav>

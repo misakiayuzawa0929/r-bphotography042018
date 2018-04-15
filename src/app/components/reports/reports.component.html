@@ -1,0 +1,60 @@
+<nav>
+    <div class="nav-wrapper black">
+      <ul> 
+        <li class="li"><a><i class="fa fa-bars bar"></i></a>
+            <ul>
+              <li class="li1"><a (click)="homeClick()">Home</a></li>
+              <li class="li1"><a (click)="accountClick()">Modify Account</a></li>
+              <li class="li1"><a (click)="productClick()">Modify Products</a></li>            
+              <li class="li1"><a (click)="packageClick()">Modify Packages</a></li>         
+              <li class="li1"><a (click)="imageClick()">Modify Images</a></li>
+              <li class="li1"><a (click)="ordersClick()">Manage Orders</a></li> 
+              <li class="li1"><a>View Reports</a></li>                         
+              <li class="li1"><a (click)="logoutClick()">Logout</a></li>
+            </ul> 
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div *ngIf="(authService.user | async)">
+  <div class="container">
+      <div *ngIf="reports?.length > 0;else noItems">
+          <h4>List of Reports</h4>
+          <h6>Completed Orders/Services</h6>
+          <ul class="collection">
+            <li class="collection-item">
+                <p><strong class="s2">Description</strong><strong>Price</strong><strong>Date</strong><strong>Time</strong>             
+            </li>
+          </ul>
+          <ul *ngFor="let item of reports" class="collection">  
+            <li class="collection-item">
+              <p><strong class="s2">{{item.description}}</strong><strong>{{item.price}}</strong><strong>{{item.date}}</strong><strong>{{item.time}}</strong>        
+              <!-- <a class="secondary-content">
+                <i (click)="editItem($event, item)" class="fa fa-pencil"></i>  
+                <i *ngIf="editState && itemToEdit.id == item.id" (click)="clearState()" class="fa fa-compress"></i>  
+              </a></p> -->
+            <!-- <div *ngIf="editState && itemToEdit.id == item.id"> -->
+              <!-- <form (ngSubmit)="updateItem(item)">
+                  <div class="row">
+                      <div class="input-field col s6">
+                          <input type="number" placeholder="Price: " [(ngModel)]="item.price" name="price">
+                      </div>
+                      <input onClick="return confirm('are you sure, do you want to update this item?')" (click)="updateItem($event, item)" type="submit" value="Update Item" class="btn orange">
+                      <button (click)="deleteItem($event, item)" class="btn red">Delete Item</button>
+                  </div>
+              </form> -->
+            <!-- </div> -->
+            </li>
+          </ul>
+      </div>
+      <ng-template #noItems>
+        <hr>
+        <h5>Error fetching data: seems like you're data connection is slow...</h5>
+      </ng-template>
+    </div>
+  </div>
+    <nav class="navig">
+      <div class="nav-wrapper black">
+          <p class="copy">Copyright <i class="fa fa-copyright"></i> 2018</p>
+      </div>
+    </nav>

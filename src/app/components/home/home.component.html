@@ -1,0 +1,32 @@
+<nav>
+        <div class="nav-wrapper black">
+          <ul> 
+            <li class="li"><a><div class="imag"></div></a>
+                <ul>
+                  <li class="li1"><a>Home</a></li>
+                  <li class="li1"><a (click)="accountClick()">Modify Account</a></li>
+                  <li class="li1"><a (click)="productClick()">Modify Products</a></li>            
+                  <li class="li1"><a (click)="packageClick()">Modify Packages</a></li>         
+                  <li class="li1"><a (click)="imageClick()">Modify Images</a></li>
+                  <li class="li1"><a (click)="ordersClick()">Manage Orders</a></li>   
+                  <li class="li1"><a (click)="reportsClick()">View Reports</a></li>                     
+                  <li class="li1"><a (click)="logoutClick()">Logout</a></li>
+                </ul> 
+            </li>
+          </ul>
+          <div class="con">
+              <!-- <div class="imag"></div> -->
+              <div class="user"><p *ngIf="authService.user | async">{{ (authService.user | async)?.email }}</p></div>
+          </div>
+        </div>
+</nav>
+<div class="container">
+  <div class="title">
+    <h1>WELCOME TO R&B PHOTOGRAPHY</h1>
+  </div>
+</div>
+<nav>
+  <div class="nav-wrapper black">
+      <p class="copy">Copyright <i class="fa fa-copyright"></i> 2018</p>
+  </div>
+</nav>

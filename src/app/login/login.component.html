@@ -1,0 +1,29 @@
+<div class="body">
+<div class="contain">
+  <div class="img">
+    
+  </div>
+</div>
+<div class="cnt">
+  <div *ngIf="authService.user | async">
+    <h5>Welcome {{ (authService.user | async)?.email }}!</h5>
+    <br>
+    <a (click)="home()" routerLink="">Proceed to home</a>
+    <br>
+    <a (click)="logout()" routerLink="">or logout</a>    
+  </div>
+
+  <div *ngIf="!(authService.user | async)">
+    <input type="text" [(ngModel)]="email" placeholder="example@gmail.com">
+    <input type="password" [(ngModel)]="password" placeholder="password">
+    <!-- 
+    <button (click)="signup()" [disabled]="!email || !password">
+      Signup
+    </button> -->
+
+    <button (click)="login()" [disabled]="!email || !password" class="btn blue">
+      Login
+    </button>
+  </div>
+</div>
+</div>

@@ -1,0 +1,83 @@
+<nav>
+  <div class="nav-wrapper black">
+    <ul> 
+      <li class="li"><a><i class="fa fa-bars bar"></i></a>
+          <ul>
+            <li class="li1"><a (click)="homeClick()">Home</a></li>
+            <li class="li1"><a (click)="accountClick()">Modify Account</a></li>
+            <li class="li1"><a (click)="productClick()">Modify Products</a></li>            
+            <li class="li1"><a (click)="packageClick()">Modify Packages</a></li>         
+            <li class="li1"><a>Modify Images</a></li>
+            <li class="li1"><a (click)="ordersClick()">Manage Orders</a></li>   
+            <li class="li1"><a (click)="reportClick()">View Reports</a></li>                        
+            <li class="li1"><a (click)="logoutClick()">Logout</a></li>
+          </ul> 
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- <div class="container">
+  <div class="dropzone"
+              dropZone
+              (hovered)="toogleHover($event)"
+              (dropped)="startUpload($event)" 
+              [class.hovering]="isHovering">
+    <h3>Manage Images</h3>
+    <p>Drag and Drop a file here...</p>
+    <div class="file">
+      <label class="file-label">
+        <input type="file"(change)="startUpload($event.target.files)">
+        
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fa fa-upload"></i>
+          </span>
+          <span class="file-label">
+            or choose a file...
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div *ngIf="percentage | async as pct">
+      <progress [value]="pct" max="100"></progress>Your current upload is already done...
+      <! <div class="progress-bar progress-bar-striped bg-success" role="progressbar" *ngIf="(snapshot | async) + '%'" max="100"></div> -->
+  <!-- </div> -->
+
+<!-- </div> -->
+<div class="container navig1">
+    <div *ngIf="currentFileUpload" class="progress" style="width:400px">
+      <div class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+        aria-valuemin="0" aria-valuemax="100"
+        [ngStyle]="{width:progress.percentage+'%'}">
+        {{progress.percentage}}% uploaded</div>
+    </div>
+    
+    <label> 
+      <input type="file"
+      (change)="selectFile($event)">
+    </label>
+    
+    <button class="btn btn-success" [disabled]="!selectedFiles"
+      (click)="upload()">Upload</button>
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">List of Files</div>
+        <div *ngFor="let file of fileUpload | async">
+          <div class="panel-body">
+              {{fileUpload.name}}
+              <button (click)='deleteFileUpload(fileUpload)'
+                class="btn btn-danger btn-xs" style="float: right">Delete</button>
+              <!-- <img src="{{fileUpload.url}}" alt="{{fileUpload.name}}" style="max-width:350px"/> -->
+           </div>
+        </div>
+    </div>
+</div>
+<nav class="navig">
+  <div class="nav-wrapper black">
+      <p class="copy">Copyright <i class="fa fa-copyright"></i> 2018</p>
+  </div>
+</nav>
